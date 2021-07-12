@@ -1,17 +1,17 @@
 function Rect(a, b) {
-    this.a = a
-    this.b = b
-    this.perimeter = function() {
-        return (this.a + this.b) * 2
-    }
-    this.area = function() {
-        return this.a * this.b
-    }
+  this.a = a
+  this.b = b
+  this.perimeter = function () {
+    return (this.a + this.b) * 2
+  }
+  this.area = function () {
+    return this.a * this.b
+  }
 }
 
 function Square(a) {
-    this.a = a
-    this.b = this.a
+  this.a = a
+  this.b = this.a
 }
 
 Square.prototype = new Rect()
