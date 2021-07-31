@@ -1,17 +1,28 @@
 function renderDataTree(array) {
-  const parent = document.createElement('ul');
+  const helper = function(array) {
+    let ul = document.createElement('ul');
 
-  const helper = function() {
     array.forEach(function (item) {
-      if ( Array.isArray(item) ) {
-        helper(item);
-      } else if ( typeof item === 'string' ) {
-        const li = document.createElement('li');
+      if ( typeof item === 'string' ) {
+        let li = document.createElement('li');
+
+        li.textContent = item;
+        ul.append(li)
+      } else if ( Array.isArray(item) ) {
+        let li = document.createElement('li');
+        li.append( helper(item) );
+        ul.append( li );
       } else {
         console.log( item + ' has unacceptable type' );
       }
     })
+
+    return ul;
   }
 
-  document.body.append(parent);
+  document.body.append(helper(array));
 }
+
+const data = ['item1', 'item2', ['item3', 'item4', 'item5', ['item6']], 5, 'item7'];
+
+renderDataTree(data);
